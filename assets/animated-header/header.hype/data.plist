@@ -78,7 +78,7 @@
 	<key>hasManuallyChangedCSSPositioning</key>
 	<false/>
 	<key>lastCheckDate</key>
-	<date>2020-11-20T17:58:46Z</date>
+	<date>2020-11-20T18:38:23Z</date>
 	<key>layout</key>
 	<dict>
 		<key>currentInspectorPane</key>
@@ -964,9 +964,9 @@
 						<key>sceneSize</key>
 						<string>{600, 400}</string>
 						<key>shouldScaleSceneHeight</key>
-						<true/>
+						<false/>
 						<key>shouldScaleSceneWidth</key>
-						<true/>
+						<false/>
 					</dict>
 					<key>oid</key>
 					<string>3</string>
@@ -1016,9 +1016,9 @@
 						<key>sceneSize</key>
 						<string>{600, 400}</string>
 						<key>shouldScaleSceneHeight</key>
-						<true/>
+						<false/>
 						<key>shouldScaleSceneWidth</key>
-						<true/>
+						<false/>
 					</dict>
 					<key>oid</key>
 					<string>9</string>
@@ -1068,9 +1068,9 @@
 						<key>sceneSize</key>
 						<string>{600, 400}</string>
 						<key>shouldScaleSceneHeight</key>
-						<true/>
+						<false/>
 						<key>shouldScaleSceneWidth</key>
-						<true/>
+						<false/>
 					</dict>
 					<key>oid</key>
 					<string>14</string>
@@ -1120,9 +1120,9 @@
 						<key>sceneSize</key>
 						<string>{600, 400}</string>
 						<key>shouldScaleSceneHeight</key>
-						<true/>
+						<false/>
 						<key>shouldScaleSceneWidth</key>
-						<true/>
+						<false/>
 					</dict>
 					<key>oid</key>
 					<string>19</string>
