@@ -56,9 +56,9 @@
                 $errMSG = "Incorrect Credentials, Try again..." ;
             }
     
-    }
+        }
    
-}
+    }
 ?>
 
 <!doctype html>
@@ -77,18 +77,27 @@
 
     <?php include('navbar.php'); ?>
 
+    <div class="row">
+        <div class="col-12">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <div class="container my-5">
+
         <div class="row">
-            <div class="col-12">
-                <div id="header_hype_container" class="HYPE_document rounded-lg" style="margin:auto;position:relative;width:600px;height:400px;overflow:hidden;">
-                    <script type="text/javascript" charset="utf-8" src="assets/animated-header/header.hyperesources/header_hype_generated_script.js?88767"></script>
+            <div class="col-md-12">
+                <div id="header_hype_container" class="HYPE_document" style="margin:auto;position:relative;width:100%;height:100%;overflow:hidden;">
+                    <script type="text/javascript" charset="utf-8" src="assets/animated-header/header.hyperesources/header_hype_generated_script.js?67051"></script>
                 </div>
             </div>
         </div>
+
         <div class="row my-3">
             <div class="col-6 border p-5 text-center text-white bg-secondary">
-                <h2>Welcome</h2>
-                <h4>Please register and login as a user to proceed.</h4>
+                <h3>Please register and login as a user to proceed.</h3>
                 <p>For a <span class="badge badge-pill badge-info">standard user</span> please use username <strong>test1@test.com</strong> and password <strong>tatata</strong><br />
                 For an <span class="badge badge-pill badge-info">admin user</span> please use username <strong>admin@admin.com</strong> and password <strong>tatata</strong></p>
             </div>
@@ -127,8 +136,9 @@
                 </form>
             </div>
         </div>
-
     </div>
+
+    <?php include('footer.php'); ?>
 
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
