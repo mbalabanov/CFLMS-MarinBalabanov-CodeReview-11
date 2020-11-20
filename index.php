@@ -79,16 +79,15 @@
 
     <div class="row">
         <div class="col-12">
-            <img src="assets/video-coverimage.jpg" class="img-fluid">
-             <!-- <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div> -->
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ig9F8vZOXuY" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 
     <div class="container my-5">
         <div class="row">
-            <div class="col-md-8 offset-2 text-center">
+            <div class="col-md-8 offset-md-2 text-center">
                     <h2 class="text-primary">Welcome to Adopt A Pet</h2>
                     <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
             </div>

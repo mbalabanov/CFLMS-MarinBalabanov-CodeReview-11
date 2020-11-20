@@ -2,6 +2,8 @@
 
 ## Project description: “Adopt a Pet”
 
+__Please find a video of the project here: https://youtu.be/Ig9F8vZOXuY__
+
 You love animals and think it is time to adopt one. You like all sorts of animals: small animals, large animals, you may even like reptiles and birds and may be open to adopting animals of any age. 
 
 All animals have a photo and live at a specific location. They also have a description, age and belong to a breed. Small animals may even have their own website. 

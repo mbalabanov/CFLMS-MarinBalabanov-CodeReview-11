@@ -13,6 +13,11 @@
             ?>
             <?php
                 if( !isset($_SESSION['user']) && !isset($_SESSION['admin']) ) {
+                    echo('<li class="nav-item"><a class="nav-link" href="#login-box">Login</a></li>');
+                }
+            ?>
+            <?php
+                if( !isset($_SESSION['user']) && !isset($_SESSION['admin']) ) {
                     echo('<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>');
                 }
             ?>
