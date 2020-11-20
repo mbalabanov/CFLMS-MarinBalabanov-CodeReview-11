@@ -29,7 +29,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Delete user | Big Library</title>
+    <title>Delete user | Adopt A Pet</title>
 
 </head>
 <body class="bg-light">

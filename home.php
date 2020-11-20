@@ -28,14 +28,14 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
-        <title>Big Media Library</title>
+        <title>Adopt A Pet</title>
     </head>
     <body class="bg-light">
 
     <?php include('navbar.php'); ?>
 
     <div class="container">
-        <h2 class="mt-5 text-center">Welcome to the Big Media Library</h2>
+        <h2 class="mt-5 text-center">Welcome to the Adopt A Pet</h2>
         <div class="row">
             <div class="col-12 text-center mb-2">
                 <div class="accordion" id="accordionExample">

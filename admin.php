@@ -24,7 +24,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
-        <title>Big Media Library</title>
+        <title>Adopt A Pet</title>
     </head>
     <body class="bg-light">
 

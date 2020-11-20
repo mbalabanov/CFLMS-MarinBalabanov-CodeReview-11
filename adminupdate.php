@@ -33,7 +33,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Edit user | Big Library</title>
+    <title>Edit user | Adopt A Pet</title>
 
 </head>
 <body class="bg-light">

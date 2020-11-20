@@ -102,7 +102,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
-        <title>Register | Big Media Library</title>
+        <title>Register | Adopt A Pet</title>
     </head>
     <body class="bg-light">
 
@@ -128,7 +128,7 @@
                     ?>
                     <div class="row">
                         <div class="col-12 text-right">
-                            <a class="btn btn-secondary" href="index.php">Back to login</a>
+                            <a class="btn btn-secondary" href="index.php#login-box">Back to login</a>
                         </div>
                     </div>
                 </div>

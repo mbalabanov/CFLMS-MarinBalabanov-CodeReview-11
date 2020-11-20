@@ -29,7 +29,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Delete media | Big Library</title>
+    <title>Delete media | Adopt A Pet</title>
 
 </head>
 <body class="bg-light">

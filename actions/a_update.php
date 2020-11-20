@@ -18,7 +18,7 @@
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <title>Edit media | Big Library</title>
+        <title>Edit media | Adopt A Pet</title>
         
     </head>
     <body class="bg-light">
