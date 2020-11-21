@@ -4,14 +4,19 @@
     require_once 'actions/db_connect.php';
 
     // if session is not set this will redirect to login page
-    if( !isset($_SESSION['admin' ]) ) {
+    if( !isset($_SESSION['admin']) && !isset($_SESSION['superadmin'])) {
         header("Location: index.php");
         exit;
     }
 
     // select logged-in users details
-    $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
-    $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
+    if($_SESSION['admin']) {
+        $res = mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
+        $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
+    } elseif($_SESSION['superadmin']) {
+        $res = mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
+        $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
+    }
 
     $sql = 'SELECT * FROM countries';
     $countryresults = $connect->query($sql);
@@ -48,7 +53,7 @@
                 <div class="m-4 alert alert-primary">
                     <form action="actions/a_updatelocation.php" method="post">
                         <div class="row my-2">
-                            <div class="col-md-4 text-right"><label for="formlo catioId">Location ID<br><span class="text-danger"><sup>(read only)</sup></span></label></div >
+                            <div class="col-md-4 text-right"><label for="formlocationId">Location ID<br><span class="text-danger"><sup>(read only)</sup></span></label></div >
                             <div class="col-md-8"><input class="form-control text-danger" type="text" name="formlocationId"  value="<?php echo $data['locationId'] ?>" readonly /></div>
                         </div>
                         <div class="row my-2">

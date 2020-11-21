@@ -4,13 +4,13 @@
     require_once 'actions/db_connect.php';
 
     // it will never let you open admin page if session is set
-    if( !isset($_SESSION['admin' ])) {
+    if( !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
     }
 
     // select logged-in users details
-    $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
+    $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 ?>
 

@@ -4,7 +4,7 @@
     require_once 'actions/db_connect.php';
 
     // if session is not set this will redirect to login page
-    if( !isset($_SESSION['user' ]) && !isset($_SESSION['admin' ]) ) {
+    if( !isset($_SESSION['user' ]) && !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
     }
@@ -14,6 +14,8 @@
         $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
     } elseif (isset($_SESSION['admin' ]) ) {
         $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
+    } elseif (isset($_SESSION['superadmin' ]) ) {
+        $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
     }
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 ?>
@@ -39,7 +41,7 @@
         <p class="text-center">Write to us at <a href="mailto:office@adoptapet.com">office@adoptapet.com</a> if you want to adopt a pet. Pets older than eight years, have their <span class="text-danger">age marked red.</span></p>
         
         <?php
-            if( isset($_SESSION['admin']) ) {
+            if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
                 printf('
                 <div class="row">
                     <div class="col-12 text-center mb-2">
@@ -100,7 +102,7 @@
                                 printf('<p class="card-text"><strong>Description:</strong> %s<br/><strong>Hobbies:</strong> %s<br/><strong>Location:</strong> %s, %s %s, %s</p>'
                                 , $row['descriptions'], $row['hobbies'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
 
-                                if( isset($_SESSION['admin']) ) {
+                                if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
                                     printf('
                                     <p class="card-text">
                                         <a class="btn btn-primary btn-sm m-2" href="update.php?id=%s">Edit pet entry</a>
@@ -120,7 +122,7 @@
                         </div>');
                     }
                 } else {
-                    echo('<div class="alert alert-danger text-center" role="alert"><h3>No meals in database</h3></div>');
+                    echo('<div class="alert alert-danger text-center" role="alert"><h3>No data in database</h3></div>');
                 }
             ?>
 

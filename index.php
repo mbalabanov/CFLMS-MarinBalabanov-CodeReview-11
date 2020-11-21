@@ -4,7 +4,7 @@
     require_once 'actions/db_connect.php';
 
     // it will never let you open index(login) page if session is set
-    if( isset($_SESSION['user' ]) || isset($_SESSION['admin' ]) ) {
+    if( isset($_SESSION['user' ]) || isset($_SESSION['admin' ]) || isset($_SESSION['superadmin' ]) ) {
         header("Location: home.php");
         exit;
     }
@@ -46,6 +46,9 @@
             if( $count == 1 && $row['userPass' ]==$password ) {
                 if($row['userType']=='admin'){
                     $_SESSION['admin'] = $row['userId'];
+                    header( "Location: home.php");
+                } elseif ($row['userType']=='superadmin'){
+                    $_SESSION['superadmin'] = $row['userId'];
                     header( "Location: admin.php");
                 } else {
                     $_SESSION['user'] = $row['userId'];
