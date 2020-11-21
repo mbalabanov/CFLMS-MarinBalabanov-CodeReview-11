@@ -17,7 +17,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <title>Add media | Adopt A Pet</title>
+    <title>Add Pet Entry | Adopt A Pet</title>
     
 </head>
 <body class="bg-light">

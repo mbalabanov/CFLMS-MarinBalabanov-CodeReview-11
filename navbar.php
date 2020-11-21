@@ -23,7 +23,7 @@
             ?>
             <?php
                 if( isset($_SESSION['admin']) ) {
-                    echo('<li class="nav-item"><a class="nav-link" href="admin.php">User Administration</a></li>');
+                    echo('<li class="nav-item"><a class="nav-link" href="locations.php">Locations</a></li><li class="nav-item"><a class="nav-link" href="admin.php">User Administration</a></li>');
                 }
             ?>
         </ul>
