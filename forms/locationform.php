@@ -26,7 +26,7 @@
                         $row['countryId'], $row['CountryName']);
                     }
                 } else {
-                    echo('<div class="alert alert-danger text-center" role="alert"><h3>No meals in database</h3></div>');
+                    echo('<div class="alert alert-danger text-center" role="alert"><h3>No countries in database</h3></div>');
                 }
             ?>
             </select>

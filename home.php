@@ -36,6 +36,7 @@
 
     <div class="container">
         <h2 class="mt-5 text-center">Welcome to Adopt A Pet</h2>
+        <p class="text-center">Write to us at <a href="mailto:office@adoptapet.com">office@adoptapet.com</a> if you want to adopt a pet. Pets older than eight years, have their <span class="text-danger">age marked red.</span></p>
         
         <?php
             if( isset($_SESSION['admin']) ) {
@@ -85,9 +86,19 @@
                           <div class="col-md-9">
                             <div class="card-body">
                                 <h4 class="card-title">%s</h4>
-                                <p class="card-text"><span class="badge badge-pill badge-success p-2 mr-2">%s</span><strong>%s</strong> years old</p>
-                                <p class="card-text"><strong>Description:</strong> %s<br/><strong>Hobbies:</strong> %s<br/><strong>Location:</strong> %s, %s %s, %s</p>',
-                                $row['image'], $row['name'], $row['name'], $row['type'], $row['age'], $row['descriptions'], $row['hobbies'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
+                                <p class="card-text"><span class="badge badge-pill badge-success p-2 mr-2">%s</span>',
+                                $row['image'], $row['name'], $row['name'], $row['type']);
+                                
+                                if($row['age'] > 7) {
+                                    printf('<span class="text-danger"><strong>%s</strong> years old</span></p>',
+                                    $row['age']);
+                                } else {
+                                    printf('<strong>%s</strong> years old</p>',
+                                    $row['age']);
+                                }
+
+                                printf('<p class="card-text"><strong>Description:</strong> %s<br/><strong>Hobbies:</strong> %s<br/><strong>Location:</strong> %s, %s %s, %s</p>'
+                                , $row['descriptions'], $row['hobbies'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
 
                                 if( isset($_SESSION['admin']) ) {
                                     printf('
@@ -95,7 +106,13 @@
                                         <a class="btn btn-primary btn-sm m-2" href="update.php?id=%s">Edit pet entry</a>
                                         <a class="btn btn-danger btn-sm m-2"  href="delete.php?id=%s">Delete pet entry</a>
                                     </p>', $row['petId'], $row['petId']);
+                                } else {
+                                    printf('
+                                    <div class="alert alert-success" role="alert">
+                                    To adopt <strong>%s</strong>, please send an email to <a href="mailto:office@adoptapet.com">office@adoptapet.com</a> with the name "%s" and ID "%s".
+                                    </div>', $row['name'], $row['name'], $row['petId']);
                                 }
+
                         printf('
                                     </div>
                                 </div>

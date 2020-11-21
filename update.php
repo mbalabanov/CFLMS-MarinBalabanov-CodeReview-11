@@ -52,8 +52,8 @@
             <form action="actions/a_update.php" method="post">
 
                 <div class="row my-2">
-                    <div class="col-md-4 text-right"><label for="formpetid">Pet ID<br><sup>(read only)</sup></label></div >
-                    <div class="col-md-8"><input class="form-control" type="text" name="formpetid"  value="<?php echo $data['petId'] ?>" readonly /></div>
+                    <div class="col-md-4 text-right"><label for="formpetid">Pet ID<br><span><sup class="text-danger">(read only)</sup></span></label></div >
+                    <div class="col-md-8"><input class="form-control text-danger" type="text" name="formpetid"  value="<?php echo $data['petId'] ?>" readonly /></div>
                 </div>
                 <div class="row my-2">
                     <div class="col-md-4 text-right"><label for="formname">Name</label></div >

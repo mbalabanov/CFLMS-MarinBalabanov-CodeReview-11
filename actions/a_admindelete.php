@@ -33,7 +33,7 @@
                         $id = $_POST['id'];
                         $sql = "DELETE FROM users WHERE userId = {$id}";
                             if($connect->query($sql) === TRUE) {
-                            echo "<h3>Successfully deleted!!</h3><a class='btn btn-primary' href='../admin.php'>Back to admin UI</a>";
+                            echo "<h3>Successfully deleted!!</h3><a class='btn btn-primary' href='../admin.php'>Back to Users</a>";
                         } else {
                             echo "<h3>Error updating record: ". $connect->error ."</h3>";
                         }

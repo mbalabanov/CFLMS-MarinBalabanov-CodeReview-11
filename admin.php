@@ -76,7 +76,7 @@
         </div>
         <div class="row my-3">
             <div class="col-md-12">
-                <table class="table">
+                <table class="table border">
                     <thead>
                         <tr class="table-active">
                             <th scope="col">Profile Image</th>
@@ -115,7 +115,7 @@
                                         <a class="btn btn-danger btn-sm mx-2"  href="admindelete.php?id=%s">Delete</a>
                                     </td>
                                 </tr>',
-                                $row['userImage'], $row['userName'], $row['userName'], $row['userEmail'], $row['userType'], $row['userId'], $row['userId']);
+                                $row['userImage'], $row['userName'], $row['userName'], $row['userEmail'], ucfirst($row['userType']), $row['userId'], $row['userId']);
                             }
                         } else {
                             echo('<tr><td colspan="6">No users in database</td></tr>');

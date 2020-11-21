@@ -17,7 +17,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <title>Add A New Location | Adopt A Pet</title>
+    <title>Update Location | Adopt A Pet</title>
     
 </head>
 <body class="bg-light">
@@ -36,11 +36,13 @@
                         $postalCode = $_POST[ 'formpostalcode'];
                         $country = intval($_POST[ 'formcountry']);
 
-                        $sql = "INSERT INTO locations (street, town, postalCode, country) VALUES ('$street', '$town', '$postalCode', '$country')";
+                        $locationId = intval($_POST[ 'formlocationId']);
+
+                    $sql = "UPDATE locations SET street = '$street', town = '$town', postalCode = '$postalCode', country = '$country' WHERE locationId = {$locationId}";
                             if($connect->query($sql) === TRUE) {
                             echo "
-                                <h3>New location address at '$street' successfully added to database</h3>
-                                <a class='btn btn-secondary m-2' href='../locations.php'>Back to locations</a>
+                                <h3>Location address at '$street' successfully update</h3>
+                                <a class='btn btn-secondary m-2' href='../locations.php'>Back to Locations</a>
                                 ";
                         } else  {
                             echo "

@@ -44,11 +44,12 @@
     <div class="row mt-3 ">
         <div class="col-8 offset-2 pt-2 alert alert-primary rounded-lg">
             <h3 class="mt-2 text-center">Edit User</h3>
+            <p class="text-center">Please note that you will have to enter a new password for this user whenever you update them.</p>
             <form action="actions/a_adminupdate.php" method="post">
 
                 <div class="row my-2">
-                    <div class="col-md-4 text-right"><label for="formuserId">User ID (read only)</label></div >
-                    <div class="col-md-8"><input class="form-control" type="text" name="formuserId"  value="<?php echo $data['userId'] ?>" readonly /></div>
+                    <div class="col-md-4 text-right"><label for="formuserId">User ID<br><span class="text-danger"><sup>(read only)</sup></span></label></div >
+                    <div class="col-md-8"><input class="form-control text-danger" type="text" name="formuserId"  value="<?php echo $data['userId'] ?>" readonly /></div>
                 </div>
                 <div class="row my-2">
                     <div class="col-md-4 text-right"><label for="formuserName">User's Name</label></div >
@@ -70,17 +71,15 @@
                     <div class="col-md-4 text-right"><label for="formuserType">User Type</label></div>
                     <div class="col-md-8">
                         <select name="formuserType" class="form-control" id="userType">
-                            <option>Choose user type...</option>
-                            <option value="admin" <?php if ($data['userType']=='admin') echo 'selected';?> >admin</option>
-                            <option value="user" <?php if ($data['userType']=='user') echo 'selected';?> >user</option>
+                            <option value="user" <?php if ($data['userType']=='user') echo 'selected';?> >User</option>
+                            <option value="admin" <?php if ($data['userType']=='admin') echo 'selected';?> >Admin</option>
+                            <option value="superadmin" <?php if ($data['userType']=='superadmin') echo 'selected';?> >Superadmin</option>
                         </select>
                     </div>
                 </div>
                 <div class="row my-2">
-                    <div class="col-4">
-                    </div>
-                    <div class="col-8 text-center">
-                        <button class="btn btn-primary m-2" type ="submit">Update user</button><a class="btn btn-secondary m-2" href="admin.php">Back to admin UI</a>
+                    <div class="col-12 text-right">
+                        <button class="btn btn-primary my-2" type ="submit">Update User</button><br><a class="btn btn-secondary my-2" href="admin.php">Back to Users</a>
                     </div>
                 </div>
 

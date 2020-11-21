@@ -56,7 +56,7 @@
         </div>
         <div class="row my-3">
             <div class="col-md-12">
-                <table class="table">
+                <table class="table border">
                     <thead>
                         <tr class="table-active">
                             <th scope="col">Street Address</th>
@@ -69,7 +69,7 @@
                     <tbody>
                     <?php
 
-                    $sql = 'SELECT locations.street, locations.town, locations.postalCode, locations.country, countries.CountryName FROM locations INNER JOIN countries ON locations.country = countries.countryId;';
+                    $sql = 'SELECT locations.locationId, locations.street, locations.town, locations.postalCode, locations.country, countries.CountryName FROM locations INNER JOIN countries ON locations.country = countries.countryId;';
 
                     $result = $connect->query($sql);
 
@@ -90,7 +90,7 @@
                                         %s
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary btn-sm mx-2" href="adminupdate.php?id=%s">Edit</a>
+                                        <a class="btn btn-primary btn-sm mx-2" href="updatelocation.php?id=%s">Edit</a>
                                     </td>
                                 </tr>',
                                 $row['street'], $row['town'], $row['postalCode'], $row['CountryName'], $row['locationId']);
