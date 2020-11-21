@@ -42,7 +42,7 @@
                 <form action ="actions/a_admindelete.php" method="post">
                     <input type="hidden" name= "id" value="<?php echo $data['userId'] ?>" />
                     <button class="btn btn-danger" type="submit">Delete</button >
-                    <a class="btn btn-secondary" href="index.php">Cancel</a>
+                    <a class="btn btn-secondary" href="admin.php">Cancel</a>
                 </form>
             </div>
         </div>

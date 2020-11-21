@@ -7,17 +7,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <?php
-                if( isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
+                if( isset($_SESSION['user']) || isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
                     echo('<li class="nav-item"><a class="nav-link" href="index.php">Pets</a></li>');
                 }
             ?>
             <?php
-                if( !isset($_SESSION['user']) && !isset($_SESSION['admin']) ) {
+                if( !isset($_SESSION['user']) && !isset($_SESSION['admin']) && !isset($_SESSION['superadmin']) ) {
                     echo('<li class="nav-item"><a class="nav-link" href="index.php#login-box">Login</a></li>');
                 }
             ?>
             <?php
-                if( !isset($_SESSION['user']) && !isset($_SESSION['admin']) ) {
+                if( !isset($_SESSION['user']) && !isset($_SESSION['admin']) && !isset($_SESSION['superadmin']) ) {
                     echo('<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>');
                 }
             ?>
@@ -28,7 +28,7 @@
             ?>
         </ul>
         <?php
-            if( isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
+            if( isset($_SESSION['user']) || isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
                 echo('<img src="'. $userRow['userImage' ] .'" height="40px" alt="'. $userRow['userEmail' ] .'" class="mx-3">'. $userRow['userEmail'] .' ('. ucfirst($userRow['userType' ]) .')<a class="btn btn-primary mx-4" href="logout.php?logout">Logout</a>');
             }
         ?>

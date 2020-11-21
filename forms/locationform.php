@@ -1,7 +1,7 @@
 <form action="actions/a_newlocation.php" method="post">
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formstreet">Street</label></div >
-        <div class="col-md-8"><input class="form-control" type="text" name="formstreet"  placeholder="Enter title of the pet..." /></div>
+        <div class="col-md-4 text-right"><label for="formstreet">Street Address</label></div >
+        <div class="col-md-8"><input class="form-control" type="text" name="formstreet"  placeholder="Enter the street address..." /></div>
     </div>
     <div class="row my-2">
         <div class="col-md-4 text-right"><label for="formtown">Town/City</label></div>
@@ -9,7 +9,7 @@
     </div>
     <div class="row my-2">
         <div class="col-md-4 text-right"><label for="formpostalcode">Postal Code</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formpostalcode" placeholder="Enter the type of pet..." /></div>
+        <div class="col-md-8"><input class="form-control" type="text" name="formpostalcode" placeholder="Enter the postal code..." /></div>
     </div>
 
     <div class="row my-2">

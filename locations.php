@@ -4,17 +4,13 @@
     require_once 'actions/db_connect.php';
 
     // if session is not set this will redirect to login page
-    if( !isset($_SESSION['user' ]) && !isset($_SESSION['admin' ]) ) {
+    if( !isset($_SESSION['admin' ]) ) {
         header("Location: index.php");
         exit;
     }
 
     // select logged-in users details
-    if(isset($_SESSION['user' ]) ) {
-        $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
-    } elseif (isset($_SESSION['admin' ]) ) {
-        $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
-    }
+    $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 ?>
 
@@ -49,7 +45,9 @@
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
-                                <?php include('forms/locationform.php'); ?>
+                                <div class="m-4 alert alert-primary">
+                                    <?php include('forms/locationform.php'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +59,7 @@
                 <table class="table">
                     <thead>
                         <tr class="table-active">
-                            <th scope="col">Street</th>
+                            <th scope="col">Street Address</th>
                             <th scope="col">Town/City</th>
                             <th scope="col">Postal Code</th>
                             <th scope="col">Country Name</th>

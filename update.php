@@ -5,7 +5,7 @@
     require_once 'actions/db_connect.php';
 
     // if session is not set this will redirect to login page
-    if( !isset($_SESSION['user' ]) ) {
+    if( !isset($_SESSION['admin' ])) {
         header("Location: index.php");
         exit;
     }
@@ -16,7 +16,7 @@
 
     if ($_GET['id']) {
         $id = $_GET['id'];
-        $sql = "SELECT * FROM media WHERE media_id = {$id}" ;
+        $sql = "SELECT * FROM pets WHERE petId = {$id}" ;
         $result = $connect->query($sql);
         $data = $result->fetch_assoc();
         $connect->close();
@@ -33,7 +33,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Edit media | Adopt A Pet</title>
+    <title>Edit Pet Entry | Adopt A Pet</title>
 
 </head>
 <body class="bg-light">
@@ -43,15 +43,15 @@
 <div class="container my-4">
     <div class="row mt-3 ">
         <div class="col-8 offset-2 pt-2 alert alert-primary rounded-lg">
-            <h3 class="mt-2 text-center">Edit Media</h3>
+            <h3 class="mt-2 text-center">Edit Pet Entry</h3>
             <form action="actions/a_update.php" method="post">
 
                 <div class="row my-2">
-                    <div class="col-md-4 text-right"><label for="formmedia_id">Media ID<br><sup>(read only)</sup></label></div >
-                    <div class="col-md-8"><input class="form-control" type="text" name="formmedia_id"  value="<?php echo $data['media_id'] ?>" readonly /></div>
+                    <div class="col-md-4 text-right"><label for="formpetid">Pet ID<br><sup>(read only)</sup></label></div >
+                    <div class="col-md-8"><input class="form-control" type="text" name="formpetid"  value="<?php echo $data['petid'] ?>" readonly /></div>
                 </div>
                 <div class="row my-2">
-                    <div class="col-md-4 text-right"><label for="formimage">Media Title</label></div >
+                    <div class="col-md-4 text-right"><label for="formimage">Name</label></div >
                     <div class="col-md-8"><input class="form-control" type="text" name="formtitle"  value="<?php echo $data['title'] ?>" /></div>
                 </div>
                 <div class="row my-2">
@@ -97,22 +97,12 @@
                         </select>
                     </div>
                 </div>
-                <div class="row my-2">
-                    <div class="col-md-4 text-right"><label for="formmedia_type">Media Type</label></div>
-                    <div class="col-md-8">
-                        <select name="formmedia_type" class="form-control" id="media_type">
-                            <option>Choose media type</option>
-                            <option value="Book" <?php if ($data['media_type']=='Book') echo 'selected';?> >Book</option>
-                            <option value="CD" <?php if ($data['media_type']=='CD') echo 'selected';?> >CD</option>
-                            <option value="DVD" <?php if ($data['media_type']=='DVD') echo 'selected';?> >DVD</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="row my-2">
                     <div class="col-4">
                     </div>
                     <div class="col-8 text-center">
-                        <button class="btn btn-primary m-2" type ="submit">Update media</button><a class="btn btn-secondary m-2" href="index.php">Back to library</a>
+                        <button class="btn btn-primary m-2" type ="submit">Update Entry</button><a class="btn btn-secondary m-2" href="index.php">Back to library</a>
                     </div>
                 </div>
 

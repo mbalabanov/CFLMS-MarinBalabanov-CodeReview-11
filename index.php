@@ -78,9 +78,9 @@
     <?php include('navbar.php'); ?>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 border">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ig9F8vZOXuY" allowfullscreen></iframe>
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rf_reiVro4A" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -113,7 +113,7 @@
         <div class="row mt-3" id="login-box">
             <div class="col-md-6 p-5 text-center text-white bg-secondary">
                 <h4>Please register and login as a user to proceed.</h4>
-                <p>For a <span class="badge badge-pill badge-warning">standard user</span> please use username <strong>test1@test.com</strong> and <strong>tatata</strong> as the password. For an <span class="badge badge-pill badge-warning">admin user</span> please use username <strong>admin@admin.com</strong> and password <strong>tatata</strong></p>
+                <p>For a <span class="badge badge-pill badge-warning">standard user</span> please use username <strong>test1@test.com</strong> and <strong>tatata</strong> as the password. For <span class="badge badge-pill badge-warning">admin</span> please use <strong>admin@admin.com</strong> and <strong>tatata</strong> as password.</p>
             </div>
             <div class="col-md-6 border bg-light p-5">
                 <h4 class="text-center">Login</h4>

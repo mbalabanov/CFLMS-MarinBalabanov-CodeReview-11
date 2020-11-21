@@ -3,14 +3,11 @@
     session_start();
 
     // if session is not set this will redirect to login page
-    if( isset($_SESSION['user' ]) ) {
+    if( !isset($_SESSION['user' ]) && !isset($_SESSION['admin'])) {
         header("Location: index.php");
         exit;
     }
 
-    if( isset($_SESSION['user'])!="" ){
-        header("Location: home.php" ); // redirects to home.php
-    }
     include_once 'actions/db_connect.php';
     $error = false;
     if ( isset($_POST['btn-signup']) ) {
@@ -128,14 +125,14 @@
                     ?>
                     <div class="row">
                         <div class="col-12 text-right">
-                            <a class="btn btn-secondary" href="index.php#login-box">Back to login</a>
+                            <a class="btn btn-secondary" href="index.php#login-box">Back to home</a>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
+        <?php include('footer.php'); ?>
 <script src="js/jquery-3.5.1.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 </body>

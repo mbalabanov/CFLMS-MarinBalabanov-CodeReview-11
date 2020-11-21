@@ -5,7 +5,7 @@
     require_once 'actions/db_connect.php';
 
     // if session is not set this will redirect to login page
-    if( !isset($_SESSION['user' ]) ) {
+    if( !isset($_SESSION['admin' ]) ) {
         header("Location: index.php");
         exit;
     }

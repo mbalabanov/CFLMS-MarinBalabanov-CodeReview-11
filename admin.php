@@ -4,7 +4,7 @@
     require_once 'actions/db_connect.php';
 
     // it will never let you open admin page if session is set
-    if( !isset($_SESSION['admin' ]) ) {
+    if( !isset($_SESSION['admin' ])) {
         header("Location: index.php");
         exit;
     }

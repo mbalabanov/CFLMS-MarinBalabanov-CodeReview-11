@@ -1,67 +1,59 @@
 <form action="actions/a_create.php" method="post">
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formimage">Media Title</label></div >
-        <div class="col-md-8"><input class="form-control" type="text" name="formtitle"  placeholder="Enter title of media..." /></div>
+        <div class="col-md-4 text-right"><label for="formname">Name</label></div >
+        <div class="col-md-8"><input class="form-control" type="text" name="formname"  placeholder="Enter title of the pet..." /></div>
     </div>
     <div class="row my-2">
         <div class="col-md-4 text-right"><label for="formimage">Image URL</label></div>
         <div class="col-md-8"><input class="form-control" type="text" name="formimage" placeholder="Enter URL of image..." /></div>
     </div>
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formauthor_first_name">Author First Name</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formauthor_first_name" placeholder="Enter the author's first name..." /></div>
+        <div class="col-md-4 text-right"><label for="formtype">Type (e.g. dog, cat, etc.)</label></div>
+        <div class="col-md-8"><input class="form-control" type="text" name="formtype" placeholder="Enter the type of pet..." /></div>
     </div>
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formauthor_last_name">Author Last Name</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formauthor_last_name" placeholder="Enter the author's last name..." /></div>
+        <div class="col-md-4 text-right"><label for="formdescription">Description</label></div>
+        <div class="col-md-8"><input class="form-control" type="text" name="formdescription" placeholder="Enter the description..." /></div>
     </div>
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formisbn_code">ISBN Code</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formisbn_code" placeholder="Enter ISBN code..." /></div>
+        <div class="col-md-4 text-right"><label for="formhobbies">Hobbies</label></div>
+        <div class="col-md-8"><input class="form-control" type="text" name="formhobbies" placeholder="Enter pet's hobbies..." /></div>
     </div>
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formshort_description">Short Description</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formshort_description" placeholder="Enter a short description..." /></div>
+        <div class="col-md-4 text-right"><label for="formage">Age</label></div>
+        <div class="col-md-8"><input class="form-control" type="number" name="formage" placeholder="Enter the pet's age..." /></div>
     </div>
+
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formpublish_date">Publishing Year</label></div>
-        <div class="col-md-8"><input class="form-control" type="number" name="formpublish_date" placeholder="Enter publishing year..." /></div>
-    </div>
-    <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formpublisher_name">Publisher Name</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formpublisher_name" placeholder="Enter publisher name..." /></div>
-    </div>
-    <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formpublisher_address">Publisher Address</label></div>
-        <div class="col-md-8"><input class="form-control" type="text" name="formpublisher_address" placeholder="Enter publisher address..." /></div>
-    </div>
-    <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formpublisher_size">Publisher Size</label></div>
+        <div class="col-md-4 text-right"><label for="formlocation">Location</label></div>
         <div class="col-md-8">
-            <select name="formpublisher_size" class="form-control" id="publisher_size">
-                <option selected>Choose publisher size...</option>
-                <option value="big">big</option>
-                <option value="medium">medium</option>
-                <option value="small">small</option>
+            <select name="formlocation" class="form-control" id="formlocation">
+
+            <?php
+                $sql = 'SELECT locations.locationId, locations.street, locations.town, locations.postalCode, locations.country, countries.CountryName FROM locations INNER JOIN countries ON locations.country = countries.countryId;';
+                $result = $connect->query($sql);
+
+                if($result->num_rows > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        printf('<option value="%s">%s, %s %s, %s</option>',
+                        $row['locationId'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
+                        }
+                    } else {
+                        echo('<option value="1">No location in database</option></tr>');
+                    }
+                ?>
             </select>
         </div>
     </div>
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formmedia_type">Media Type</label></div>
-        <div class="col-md-8">
-            <select name="formmedia_type" class="form-control" id="media_type">
-                <option selected>Choose media type...</option>
-                <option value="Book">Book</option>
-                <option value="CD">CD</option>
-                <option value="DVD">DVD</option>
-            </select>
+        <div class="col-md-12 text-center">
+            <p>Select from existing locations or <a href="locations.php">add a new location using the separate form.</a></p>
         </div>
     </div>
+
     <div class="row my-2">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8 text-right">
-            <button class="btn btn-primary" type ="submit">Insert media</button>
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary" type ="submit">Insert entry</button>
         </div>
     </div>
 </form>

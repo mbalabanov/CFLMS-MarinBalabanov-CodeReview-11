@@ -36,30 +36,42 @@
 
     <div class="container">
         <h2 class="mt-5 text-center">Welcome to Adopt A Pet</h2>
-        <div class="row">
-            <div class="col-12 text-center mb-2">
-                <div class="accordion" id="accordionExample">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Add new pet entry
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <?php include('forms/createpetform.php'); ?>
+        
+        <?php
+            if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
+                printf('
+                <div class="row">
+                    <div class="col-12 text-center mb-2">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            New Pet Entry
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="m-4 alert alert-primary">');
+
+                include("forms/createpetform.php");
+                printf('
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                ');
+            }
+        ?>
+
         <div class="row mb-5 alert alert-warning pb-4 rounded-lg border">
 
             <?php
-                $sql = 'SELECT * FROM pets';
+                $sql = 'SELECT pets.petId, pets.name, pets.image, pets.type, pets.age, pets.descriptions, pets.hobbies, locations.street, locations.town, locations.postalCode, countries.CountryName FROM pets, locations, countries WHERE pets.location = locations.locationId AND locations.country = countries.countryId';
                 $result = $connect->query($sql);
 
                 if($result->num_rows > 0) {
@@ -73,17 +85,22 @@
                           <div class="col-md-9">
                             <div class="card-body">
                                 <h4 class="card-title">%s</h4>
-                                <p class="card-text"><span class="badge badge-pill badge-success mb-3 mr-2">%s</span><strong>%s</strong> years old</p>
-                                <p class="card-text">%s</p>
-                                <p class="card-text">
-                                    <a class="btn btn-primary btn-sm m-2" href="update.php?id=%s">Edit pet entry</a>
-                                    <a class="btn btn-danger btn-sm m-2"  href="delete.php?id=%s">Delete pet entry</a>
-                                </p>
+                                <p class="card-text"><span class="badge badge-pill badge-success p-2 mr-2">%s</span><strong>%s</strong> years old</p>
+                                <p class="card-text"><strong>Description:</strong> %s<br/><strong>Hobbies:</strong> %s<br/><strong>Location:</strong> %s, %s %s, %s</p>',
+                                $row['image'], $row['name'], $row['name'], $row['type'], $row['age'], $row['descriptions'], $row['hobbies'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
+
+                                if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
+                                    printf('
+                                    <p class="card-text">
+                                        <a class="btn btn-primary btn-sm m-2" href="update.php?id=%s">Edit pet entry</a>
+                                        <a class="btn btn-danger btn-sm m-2"  href="delete.php?id=%s">Delete pet entry</a>
+                                    </p>', $row['petId'], $row['petId']);
+                                }
+                        printf('
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>',
-                      $row['image'], $row['name'], $row['name'], $row['type'], $row['age'], $row['descriptions'], $row['hobbies'], $row['pet_id'], $row['pet_id']);
+                        </div>');
                     }
                 } else {
                     echo('<div class="alert alert-danger text-center" role="alert"><h3>No meals in database</h3></div>');

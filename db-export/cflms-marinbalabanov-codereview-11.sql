@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2020 at 01:57 PM
+-- Generation Time: Nov 21, 2020 at 04:26 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -375,7 +375,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userId`, `userName`, `userEmail`, `userPass`, `userImage`, `userType`) VALUES
 (1, 'Test User', 'test1@test.com', '38a320b2a67c8003cc748d6666534f2b01f3f08d175440537a5bf86b7d08d5ee', 'assets/user1.png', 'user'),
-(2, 'Admin User', 'admin@admin.com', '38a320b2a67c8003cc748d6666534f2b01f3f08d175440537a5bf86b7d08d5ee', 'assets/user2.png', 'admin');
+(2, 'Admin User', 'admin@admin.com', '38a320b2a67c8003cc748d6666534f2b01f3f08d175440537a5bf86b7d08d5ee', 'assets/user2.png', 'admin'),
+(3, 'Super Admin', 'superadmin@admin.com', '38a320b2a67c8003cc748d6666534f2b01f3f08d175440537a5bf86b7d08d5ee', 'assets/user3.png', 'superadmin');
 
 --
 -- Indexes for dumped tables
@@ -421,7 +422,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `locationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `locationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pets`
@@ -433,7 +434,7 @@ ALTER TABLE `pets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

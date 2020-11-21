@@ -56,7 +56,11 @@
                 </div>
                 <div class="row my-2">
                     <div class="col-md-4 text-right"><label for="formuserEmail">User's Email Address</label></div >
-                    <div class="col-md-8"><input class="form-control" type="text" name="formuserEmail"  value="<?php echo $data['userEmail'] ?>" /></div>
+                    <div class="col-md-8"><input class="form-control" type="email" name="formuserEmail"  value="<?php echo $data['userEmail'] ?>" /></div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-md-4 text-right"><label for="formpassword">Password</label></div >
+                    <div class="col-md-8"><input class="form-control" type="password" name="formpassword"  value="" placeholder="Please enter a new password"/></div>
                 </div>
                 <div class="row my-2">
                     <div class="col-md-4 text-right"><label for="formuserImage">Image URL</label></div>

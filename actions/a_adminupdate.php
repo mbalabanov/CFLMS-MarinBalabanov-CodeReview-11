@@ -34,13 +34,15 @@
                             $userName = $_POST['formuserName'];
                             $userImage = $_POST['formuserImage'];
                             $userEmail = $_POST['formuserEmail'];
+                            $pass = $_POST['formpassword'];
+                            $password = hash('sha256' , $pass);
                             $userType = $_POST[ 'formuserType'];
 
                             $userId = $_POST['formuserId'];
 
-                            $sql = "UPDATE users SET userName = '$userName', userImage = '$userImage', userEmail = '$userEmail', userType = '$userType' WHERE userId = {$userId}" ;
+                            $sql = "UPDATE users SET userName = '$userName', userImage = '$userImage', userEmail = '$userEmail', userPass = '$password', userType = '$userType' WHERE userId = {$userId}" ;
                             if($connect->query($sql) === TRUE) {
-                                echo "<h3>User '$userName' was successfully updated</h3><a class='btn btn-primary m-2' href='../update.php?id=" .$userId."'>Edit user</a><a class='btn btn-secondary m-2' href='../admin.php'>Back to admin UI</a>";
+                                echo "<h3>User '$userName' was successfully updated</h3><a class='btn btn-primary m-2' href='../adminupdate.php?id=" .$userId."'>Edit user</a><a class='btn btn-secondary m-2' href='../admin.php'>Back to admin UI</a>";
                             } else {
                                 echo "Error while updating record : ". $connect->error;
                             }
