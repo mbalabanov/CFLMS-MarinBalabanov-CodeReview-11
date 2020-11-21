@@ -8,7 +8,7 @@
         <div class="col-md-8"><input class="form-control" type="text" name="formimage" placeholder="Enter URL of image..." /></div>
     </div>
     <div class="row my-2">
-        <div class="col-md-4 text-right"><label for="formtype">Type (e.g. dog, cat, etc.)</label></div>
+        <div class="col-md-4 text-right"><label for="c">Type<br><sup>(e.g. dog, cat, etc.)</sup></label></div>
         <div class="col-md-8"><input class="form-control" type="text" name="formtype" placeholder="Enter the type of pet..." /></div>
     </div>
     <div class="row my-2">

@@ -30,23 +30,19 @@
                     require_once 'db_connect.php';
 
                     if ($_POST) {
-                    $title = $_POST['formtitle'];
+                    $name = $_POST['formname'];
                     $image = $_POST['formimage'];
-                    $author_first_name = $_POST[ 'formauthor_first_name'];
-                    $author_last_name = $_POST[ 'formauthor_last_name'];
-                    $isbn_code = $_POST[ 'formisbn_code'];
-                    $short_description = $_POST[ 'formshort_description'];
-                    $publish_date = intval($_POST[ 'formpublish_date']);
-                    $publisher_name = $_POST[ 'formpublisher'];
-                    $publisher_address = $_POST[ 'formpublisher'];
-                    $publisher_size = $_POST[ 'formpublisher'];
-                    $media_type = $_POST[ 'formmedia_type'];
+                    $type = $_POST[ 'formtype'];
+                    $descriptions = $_POST[ 'formdescription'];
+                    $hobbies = $_POST[ 'formhobbies'];
+                    $age = intval($_POST[ 'formage']);
+                    $location = intval($_POST[ 'formlocation']);
 
-                    $sql = "INSERT INTO media (title, image, author_first_name, author_last_name, isbn_code, short_description, publish_date, publisher_name, publisher_address, publisher_size, media_type) VALUES ('$title', '$image', '$author_first_name', '$author_last_name', '$isbn_code', '$short_description', '$publish_date', '$publisher_name', '$publisher_address', '$publisher_size', '$media_type')";
+                    $sql = "INSERT INTO pets (name, image, type, descriptions, hobbies, age, location) VALUES ('$name', '$image', '$type', '$descriptions', '$hobbies', '$age', '$location')";
                         if($connect->query($sql) === TRUE) {
                         echo "
-                            <h3>New media '$title' successfully added to database</h3>
-                            <a class='btn btn-secondary m-2' href='../index.php'>Back to library</a>
+                            <h3>New pet '$name' successfully added to database</h3>
+                            <a class='btn btn-secondary m-2' href='../index.php'>Back to pet list</a>
                             ";
                     } else  {
                         echo "

@@ -18,7 +18,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <title>Delete media | Adopt A Pet</title>
+    <title>Delete Entry | Adopt A Pet</title>
     
 </head>
 <body class="bg-light">
@@ -31,9 +31,9 @@
                     require_once 'db_connect.php';
                     if ($_POST) {
                         $id = $_POST['id'];
-                        $sql = "DELETE FROM media WHERE media_id = {$id}";
+                        $sql = "DELETE FROM pets WHERE petId = {$id}";
                             if($connect->query($sql) === TRUE) {
-                            echo "<h3>Successfully deleted!!</h3><a class='btn btn-primary' href='../index.php'>Back to home</a>";
+                            echo "<h3>Successfully deleted!!</h3><a class='btn btn-primary' href='../index.php'>Back to pet list</a>";
                         } else {
                             echo "<h3>Error updating record: ". $connect->error ."</h3>";
                         }

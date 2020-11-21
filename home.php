@@ -38,7 +38,7 @@
         <h2 class="mt-5 text-center">Welcome to Adopt A Pet</h2>
         
         <?php
-            if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
+            if( isset($_SESSION['admin']) ) {
                 printf('
                 <div class="row">
                     <div class="col-12 text-center mb-2">
@@ -89,7 +89,7 @@
                                 <p class="card-text"><strong>Description:</strong> %s<br/><strong>Hobbies:</strong> %s<br/><strong>Location:</strong> %s, %s %s, %s</p>',
                                 $row['image'], $row['name'], $row['name'], $row['type'], $row['age'], $row['descriptions'], $row['hobbies'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
 
-                                if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
+                                if( isset($_SESSION['admin']) ) {
                                     printf('
                                     <p class="card-text">
                                         <a class="btn btn-primary btn-sm m-2" href="update.php?id=%s">Edit pet entry</a>
