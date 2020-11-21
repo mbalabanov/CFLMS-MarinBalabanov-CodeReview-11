@@ -3,7 +3,7 @@
     session_start();
 
     // if session is not set this will redirect to login page
-    if( !isset($_SESSION['user' ]) && !isset($_SESSION['admin'])) {
+    if( isset($_SESSION['user' ]) || isset($_SESSION['admin'])) {
         header("Location: index.php");
         exit;
     }
