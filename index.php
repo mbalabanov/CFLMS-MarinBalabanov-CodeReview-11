@@ -25,15 +25,15 @@
     
         if(empty($email)){
             $error = true;
-            $emailError = "Please enter your email address.";
+            $emailError = '<div class="alert alert-danger my-1" role="alert">Please enter your email address.</div>';
         } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
             $error = true;
-            $emailError = "Please enter valid email address.";
+            $emailError = '<div class="alert alert-danger my-1" role="alert">Please enter valid email address.</div>';
         }
     
         if (empty($pass)){
             $error = true;
-            $passError = "Please enter your password." ;
+            $passError = '<div class="alert alert-danger my-1" role="alert">Please enter your password.</div>';
         }
 
         // if there's no error, continue to login
@@ -56,7 +56,7 @@
                 }
 
             } else {
-                $errMSG = "Incorrect Credentials, Try again..." ;
+                $errMSG = '<div class="alert alert-danger my-1" role="alert">Incorrect Credentials, Try again...</div>';
             }
     
         }
@@ -91,24 +91,24 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
-                    <h2 class="text-primary">Welcome to Adopt A Pet</h2>
+                    <h2 class="text-warning">Welcome to Adopt A Pet</h2>
                     <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 text-center">
                 <img src="assets/dogs/dog4.jpg" class="img-fluid rounded-lg" alt="Cute Dogs">
-                <h3 class="text-primary">Cute Dogs</h3>
+                <h3 class="text-warning">Cute Dogs</h3>
                 <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
             </div>
             <div class="col-md-4 text-center">
                 <img src="assets/cats/cat3.jpg" class="img-fluid rounded-lg" alt="Majestic Cats">
-                <h3 class="text-primary">Majestic Cats</h3>
+                <h3 class="text-warning">Majestic Cats</h3>
                 <p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
             </div>
             <div class="col-md-4 text-center">
                 <img src="assets/woman.jpg" class="img-fluid rounded-lg" alt="Happy New Owners">
-                <h3 class="text-primary">Happy New Owners</h3>
+                <h3 class="text-warning">Happy New Owners</h3>
                 <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
             </div>
         </div>
@@ -116,7 +116,7 @@
         <div class="row mt-3" id="login-box">
             <div class="col-md-6 p-5 text-center text-white bg-secondary">
                 <h4>Please register and login as a user to proceed.</h4>
-                <p>For a <span class="badge badge-pill badge-warning">standard user</span> please use username <strong>test1@test.com</strong> and <strong>tatata</strong> as the password. For <span class="badge badge-pill badge-warning">admin</span> please use <strong>admin@admin.com</strong> and <strong>tatata</strong> as password.</p>
+                <p>For a <span class="badge badge-pill badge-warning">standard user</span> please use username <strong>test1@test.com</strong> and <strong>tatata</strong> as the password. For <span class="badge badge-pill badge-warning">admin</span> please use <strong>admin@admin.com</strong> and <strong>tatata</strong> as password. For <span class="badge badge-pill badge-warning">superadmin</span> please use <strong>superadmin@admin.com</strong> and <strong>tatata</strong> as password.</p>
             </div>
             <div class="col-md-6 border bg-light p-5">
                 <h4 class="text-center">Login</h4>
@@ -145,9 +145,9 @@
                         </div>
                     </div>
                     <div class="row my-2">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary m-2" type="submit" name="btn-login">Login</button>
-                            <a class="btn btn-secondary m-2" href="register.php">Go to registration</a>
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary my-2" type="submit" name="btn-login">Login</button><br/>
+                            <a href="register.php">Go to registration</a>
                         </div>
                     </div>
                 </form>
