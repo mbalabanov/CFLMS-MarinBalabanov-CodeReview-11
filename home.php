@@ -71,7 +71,16 @@
             }
         ?>
 
-        <div class="row mb-5 alert alert-warning pb-4 rounded-lg border">
+        <form id="livesearch">
+            <div class="row my-4 alert alert-primary p-4 rounded-lg border">
+                <label for="searchfield" class="col-sm-2 col-form-label text-right">Filter</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="searchfield" name="searchfield" type="text" value="" placeholder="Start typing pet's name..."/>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mb-5 alert alert-warning pb-4 rounded-lg border" id="petsearch">
 
             <?php
                 $sql = 'SELECT pets.petId, pets.name, pets.image, pets.type, pets.age, pets.descriptions, pets.hobbies, locations.street, locations.town, locations.postalCode, countries.CountryName FROM pets, locations, countries WHERE pets.location = locations.locationId AND locations.country = countries.countryId';
@@ -133,6 +142,55 @@
 
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        // Variable to hold request
+        let searchrequest;
+
+        /* ***** Function for KEYUP and email check ***** */
+        $("#searchfield").keyup(function(event){
+
+        // setup some local variables
+        var $form = $(this);
+
+        // Let's select and cache all the fields
+        var $inputs = $form.find("input, select, button, textarea");
+
+        // Serialize the data in the form
+        var serializedData = $form.serialize();
+
+        // Fire off the request to /form.php
+        searchrequest = $.ajax({
+            url: "actions/a_petslivesearch.php",
+            type: "post",
+            data: serializedData
+        });
+
+        // Callback handler that will be called on success
+        searchrequest.done(function (response, textStatus, jqXHR){
+            // Log a message to the console
+            document.getElementById("petsearch").innerHTML=response;
+        });
+
+        // Callback handler that will be called on failure
+        searchrequest.fail(function (jqXHR, textStatus, errorThrown){
+            // Log the error to the console
+            console.error(
+                "The following error occurred: "+
+                textStatus, errorThrown
+            );
+        });
+
+        // Callback handler that will be called regardless
+        // if the request failed or succeeded
+        searchrequest.always(function () {
+            // Reenable the inputs
+            $inputs.prop("disabled", false);
+        });
+        });
+
+    </script>
 
   </body>
 </html>
