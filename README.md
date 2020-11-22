@@ -1,6 +1,6 @@
-# CFLMS CodeReview 11 MarinBalabanov
+# Adopt A Pet - CFLMS CodeReview 11 MarinBalabanov
 
-## Project description: “Adopt a Pet”
+## Project description
 
 __Please find a video of the project here: https://youtu.be/Ig9F8vZOXuY__
 
@@ -10,6 +10,7 @@ All animals show their name, an image, a description and a location. A location 
 
 The pet list page has a __live search__ allowing users to  filter/search through the pets (this feature uses AJAX).
 
+![Adopt A Pet Index Page](assets/screenshot-index.png)
 
 ## User Types
 By default, there are three kinds of users:
