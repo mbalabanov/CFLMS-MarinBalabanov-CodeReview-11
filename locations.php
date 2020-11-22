@@ -63,7 +63,7 @@
 
         <!-- This renders the location data into a table.
              Locations cannot be deleted, because they are used as a foreign key in the pets table.
-             This is not a terrible issue, because admins can change existing locations or assign pets to different locations. -->
+             This is not much of an issue, because admins can change existing locations or assign pets to different locations. -->
         <div class="row my-3">
             <div class="col-md-12">
                 <table class="table border">
