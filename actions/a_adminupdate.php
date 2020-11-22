@@ -2,7 +2,7 @@
     ob_start();
     session_start();
 
-    // if session is not set this will redirect to login page
+    // Prevents any users to access this action who are not superadmin
     if( !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
@@ -12,11 +12,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- Bootstrap CSS -->
+
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <title>Edit user | Adopt A Pet</title>
         
@@ -27,6 +25,7 @@
             <div class='row pt-2 alert alert-success rounded-lg'>
                 <div class='col-10 offset-1 text-center'>
 
+                    <!-- Updates the item and displays message to user -->
                     <?php 
                         require_once 'db_connect.php';
 
@@ -54,6 +53,7 @@
                 </div>
             </div>
         </div >
+
         <script src="../js/jquery-3.5.1.min.js"></script>
         <script src="../js/bootstrap.bundle.min.js"></script>
     </body>

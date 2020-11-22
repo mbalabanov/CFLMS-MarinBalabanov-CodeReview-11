@@ -1,3 +1,5 @@
+<!-- This form provides the input fields to create a new pet entry. -->
+
 <form action="actions/a_create.php" method="post">
     <div class="row my-2">
         <div class="col-md-4 text-right"><label for="formname">Name</label></div >
@@ -29,6 +31,8 @@
         <div class="col-md-8">
             <select name="formlocation" class="form-control" id="formlocation">
 
+            <!-- This gets the location data from the database by joining the locations table with the country table.
+                 This puts together a full address and renders it into the select options list. -->
             <?php
                 $sql = 'SELECT locations.locationId, locations.street, locations.town, locations.postalCode, locations.country, countries.CountryName FROM locations INNER JOIN countries ON locations.country = countries.countryId;';
                 $result = $connect->query($sql);
@@ -45,6 +49,7 @@
             </select>
         </div>
     </div>
+
     <div class="row my-2">
         <div class="col-md-12 text-center">
             <p>Select from existing locations or <a href="locations.php">add a new location using the separate form.</a></p>

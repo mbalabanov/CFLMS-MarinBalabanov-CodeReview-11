@@ -4,6 +4,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- The navbar hides the login and register buttons when users are already logged in.
+         It only shows the navbar item for location to Admins and Superadmins.
+         It only shows the navbar item for the user administration to Superadmins.
+         When users are logged in, then their email address and their role are displayed in the navbar. -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <?php

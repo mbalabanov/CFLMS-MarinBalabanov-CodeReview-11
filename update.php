@@ -4,13 +4,13 @@
 
     require_once 'actions/db_connect.php';
 
-    // if session is not set this will redirect to login page
+    // Prevents any users to access this action who are not superadmin
     if( !isset($_SESSION['admin']) && !isset($_SESSION['superadmin'])) {
         header("Location: index.php");
         exit;
     }
 
-    // select logged-in users details
+    // Selects details of users who are logged in
     if($_SESSION['admin']) {
         $res = mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
         $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
@@ -19,9 +19,11 @@
         $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
     }
 
+    // Gets the locations table and joins it with the countries table for a complete location address to populate the select options list.
     $sql = 'SELECT locations.locationId, locations.street, locations.town, locations.postalCode, locations.country, countries.CountryName FROM locations INNER JOIN countries ON locations.country = countries.countryId;';
     $countrylist = $connect->query($sql);
 
+    // Gets the ID in the URL and pulls the relevant pet entry from the database.
     if ($_GET['id']) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM pets WHERE petId = {$id}" ;
@@ -36,11 +38,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <title>Edit Pet Entry | Adopt A Pet</title>
@@ -54,8 +54,9 @@
     <div class="row mt-3 ">
         <div class="col-8 offset-2 pt-2 alert alert-primary rounded-lg">
             <h3 class="mt-2 text-center">Edit Pet Entry</h3>
-            <form action="actions/a_update.php" method="post">
 
+            <!-- This form provides the input fields to update an existing pet entry. -->
+            <form action="actions/a_update.php" method="post">
                 <div class="row my-2">
                     <div class="col-md-4 text-right"><label for="formpetid">Pet ID<br><span><sup class="text-danger">(read only)</sup></span></label></div >
                     <div class="col-md-8"><input class="form-control text-danger" type="text" name="formpetid"  value="<?php echo $data['petId'] ?>" readonly /></div>
@@ -90,21 +91,21 @@
                     <div class="col-md-8">
                         <select name="formlocation" class="form-control" id="formlocation">
 
+                            <!-- This renders the location and country data into the select options list. -->
                             <?php
-
                                 if($countrylist->num_rows > 0) {
                                     while($row = mysqli_fetch_assoc($countrylist)) {
                                         if($data['location'] == $row['locationId']) {
                                             printf('<option value="%s" selected>%s, %s %s, %s</option>',
                                             $row['locationId'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
-                                            } else {
-                                                printf('<option value="%s">%s, %s %s, %s</option>',
-                                                $row['locationId'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
-                                            }
+                                        } else {
+                                            printf('<option value="%s">%s, %s %s, %s</option>',
+                                            $row['locationId'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
                                         }
-                                    } else {
-                                        echo('<option value="1">No location in database</option>');
                                     }
+                                } else {
+                                    echo('<option value="1">No location in database</option>');
+                                }
                             ?>
 
                         </select>

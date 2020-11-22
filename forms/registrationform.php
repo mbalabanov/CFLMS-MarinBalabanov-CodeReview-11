@@ -1,11 +1,13 @@
-<form method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"  autocomplete="off" >
+<!-- This form provides the input fields to register a new user. -->
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"  autocomplete="off" >
     
     <div class="row my-2">
         <div class="col-4 text-right">
             Name
         </div>
         <div class="col-8">
-            <input type ="text"  name="name"  class="form-control"  placeholder="Your name" maxlength="50" value="<?php echo $name ?>"  />
+            <input type ="text"  name="name"  class="form-control"  placeholder="Your name" maxlength="50" />
             <span class="text-danger"> <?php echo $nameError; ?> </span>
         </div>
     </div>
@@ -14,7 +16,7 @@
             Email Address
         </div>
         <div class="col-8">
-            <input type="email" name="email" class="form-control" placeholder="Your email address" maxlength="40" value ="<?php echo $email ?>"  />
+            <input type="email" name="email" class="form-control" placeholder="Your email address" maxlength="40"/>
             <span  class="text-danger"> <?php echo $emailError; ?> </span> 
         </div>
     </div>
@@ -23,7 +25,7 @@
             User Image URL<br><sup>(optional)</sup>
         </div>
         <div class="col-8">
-            <input type="text" name="userimage" class="form-control" placeholder="The URL of your image" value ="<?php echo $userimage ?>"  />
+            <input type="text" name="userimage" class="form-control" placeholder="The URL of your image"/>
         </div>
     </div>
     <div class="row my-2">

@@ -3,13 +3,13 @@
     session_start();
     require_once 'actions/db_connect.php';
 
-    // if session is not set this will redirect to login page
+    // Prevent users to access this page without a login
     if( !isset($_SESSION['user' ]) && !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
     }
 
-    // select logged-in users details
+    // Selects details of users who are logged in
     if(isset($_SESSION['user' ]) ) {
         $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
     } elseif (isset($_SESSION['admin' ]) ) {
@@ -23,11 +23,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <title>Adopt A Pet</title>
@@ -40,6 +37,7 @@
         <h2 class="mt-5 text-center">Welcome to Adopt A Pet</h2>
         <p class="text-center">Write to us at <a href="mailto:office@adoptapet.com">office@adoptapet.com</a> if you want to adopt a pet. Pets older than eight years, have their <span class="text-danger">age marked red.</span></p>
         
+        <!-- The form to create a new pet entry is in an accordion. -->
         <?php
             if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
                 printf('
@@ -71,6 +69,7 @@
             }
         ?>
 
+        <!-- The live search input field calls on the action a_petslivesearch. User inputs are routed to the JS function at the bottom of this source. -->
         <form id="livesearch">
             <div class="row my-4 alert alert-primary p-4 rounded-lg border">
                 <label for="searchfield" class="col-sm-2 col-form-label text-right">Filter</label>
@@ -82,6 +81,8 @@
 
         <div class="row mb-5 alert alert-warning pb-4 rounded-lg border" id="petsearch">
 
+            <!-- Initially renders the list of all pet entries when the page is loaded.
+                 Subsequent pet entries are rendered based on the live search. -->
             <?php
                 $sql = 'SELECT pets.petId, pets.name, pets.image, pets.type, pets.age, pets.descriptions, pets.hobbies, locations.street, locations.town, locations.postalCode, countries.CountryName FROM pets, locations, countries WHERE pets.location = locations.locationId AND locations.country = countries.countryId';
                 $result = $connect->query($sql);
@@ -99,7 +100,8 @@
                                 <h4 class="card-title">%s</h4>
                                 <p class="card-text"><span class="badge badge-pill badge-success p-2 mr-2">%s</span>',
                                 $row['image'], $row['name'], $row['name'], $row['type']);
-                                
+
+                                // As per the project requirements, the age of the pet is checked and emphasized.
                                 if($row['age'] > 7) {
                                     printf('<span class="text-danger"><strong>%s</strong> years old</span></p>',
                                     $row['age']);
@@ -111,6 +113,8 @@
                                 printf('<p class="card-text"><strong>Description:</strong> %s<br/><strong>Hobbies:</strong> %s<br/><strong>Location:</strong> %s, %s %s, %s</p>'
                                 , $row['descriptions'], $row['hobbies'], $row['street'], $row['postalCode'], $row['town'], $row['CountryName']);
 
+                                // Admins and Superadmins see the options to edit or delete pet entries.
+                                // Regular users see the message on how to apply to adopt the pet.
                                 if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
                                     printf('
                                     <p class="card-text">
@@ -145,49 +149,45 @@
 
     <script>
 
-        // Variable to hold request
+        // Variable holds the search request
         let searchrequest;
 
-        /* ***** Function for KEYUP and email check ***** */
+        /* Function for search term check on keyup */
         $("#searchfield").keyup(function(event){
 
-        // setup some local variables
-        var $form = $(this);
+            // Holds the data of the searchfield in this form
+            var $form = $(this);
 
-        // Let's select and cache all the fields
-        var $inputs = $form.find("input, select, button, textarea");
+            // Selects and stores input in the searchfield
+            var $inputs = $form.find("input");
 
-        // Serialize the data in the form
-        var serializedData = $form.serialize();
+            // Serializes the data in the searchfield
+            var serializedData = $form.serialize();
 
-        // Fire off the request to /form.php
-        searchrequest = $.ajax({
-            url: "actions/a_petslivesearch.php",
-            type: "post",
-            data: serializedData
-        });
+            // Sends the search request to the livesearch action
+            searchrequest = $.ajax({
+                url: "actions/a_petslivesearch.php",
+                type: "post",
+                data: serializedData
+            });
 
-        // Callback handler that will be called on success
-        searchrequest.done(function (response, textStatus, jqXHR){
-            // Log a message to the console
-            document.getElementById("petsearch").innerHTML=response;
-        });
+            // Receives the callback on success and inserts the search results in the pet list
+            searchrequest.done(function (response, textStatus, jqXHR){
+                document.getElementById("petsearch").innerHTML=response;
+            });
 
-        // Callback handler that will be called on failure
-        searchrequest.fail(function (jqXHR, textStatus, errorThrown){
-            // Log the error to the console
-            console.error(
-                "The following error occurred: "+
-                textStatus, errorThrown
-            );
-        });
+            // Receives the callback on failure and outputs to the console
+            searchrequest.fail(function (jqXHR, textStatus, errorThrown){
+                console.error(
+                    "This error has occured: "+
+                    textStatus, errorThrown
+                );
+            });
 
-        // Callback handler that will be called regardless
-        // if the request failed or succeeded
-        searchrequest.always(function () {
-            // Reenable the inputs
-            $inputs.prop("disabled", false);
-        });
+            // Any callback reactivates the input field
+            searchrequest.always(function () {
+                $inputs.prop("disabled", false);
+            });
         });
 
     </script>

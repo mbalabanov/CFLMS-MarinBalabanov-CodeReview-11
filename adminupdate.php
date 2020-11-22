@@ -10,10 +10,12 @@
         exit;
     }
 
-    // select logged-in users details
+    // Selects details of users who are logged in.
+    // Since only Superadmin users can access this page, only their data is queried
     $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 
+    // Gets the ID in the URL and pulls the relevant user data from the database.
     if ($_GET['id']) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM users WHERE userId = {$id}" ;
@@ -26,11 +28,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <title>Edit user | Adopt A Pet</title>
@@ -45,8 +45,9 @@
         <div class="col-8 offset-2 pt-2 alert alert-primary rounded-lg">
             <h3 class="mt-2 text-center">Edit User</h3>
             <p class="text-center">Please note that you will have to enter a new password for this user whenever you update them.</p>
-            <form action="actions/a_adminupdate.php" method="post">
 
+            <!-- This form provides the input fields to update existing users, therefore provides the prepopulated values in the input fields. -->
+            <form action="actions/a_adminupdate.php" method="post">
                 <div class="row my-2">
                     <div class="col-md-4 text-right"><label for="formuserId">User ID<br><span class="text-danger"><sup>(read only)</sup></span></label></div >
                     <div class="col-md-8"><input class="form-control text-danger" type="text" name="formuserId"  value="<?php echo $data['userId'] ?>" readonly /></div>

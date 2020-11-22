@@ -3,13 +3,13 @@
     session_start();
     require_once 'actions/db_connect.php';
 
-    // if session is not set this will redirect to login page
+    // Prevents any users to access this action who are not superadmin
     if( !isset($_SESSION['admin']) && !isset($_SESSION['superadmin'])) {
         header("Location: index.php");
         exit;
     }
 
-    // select logged-in users details
+    // Selects details of users who are logged in
     if($_SESSION['admin']) {
         $res = mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
         $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
@@ -33,11 +33,9 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <title>Adopt A Pet</title>
@@ -51,6 +49,8 @@
         <div class="row">
             <div class="col-12 text-center mb-2">
                 <div class="m-4 alert alert-primary">
+
+                    <!-- This form provides the input fields to update an existing location. -->
                     <form action="actions/a_updatelocation.php" method="post">
                         <div class="row my-2">
                             <div class="col-md-4 text-right"><label for="formlocationId">Location ID<br><span class="text-danger"><sup>(read only)</sup></span></label></div >
@@ -73,8 +73,9 @@
                             <div class="col-md-4 text-right"><label for="formcountry">Country</label></div>
                             <div class="col-md-8">
                                 <select class="form-control" name="formcountry" id="formcountry">
-                                <?php
 
+                                <!-- This gets the country list from the country table and renders it into the select option list. -->
+                                <?php
                                     if($countryresults->num_rows > 0) {
                                         while($row = mysqli_fetch_assoc($countryresults)) {
 
@@ -90,6 +91,7 @@
                                         echo('<div class="alert alert-danger text-center" role="alert"><h3>No countries in database</h3></div>');
                                     }
                                 ?>
+
                                 </select>
                             </div>
                         </div>

@@ -3,17 +3,18 @@
     session_start();
     require_once 'actions/db_connect.php';
 
-    // it will never let you open index(login) page if session is set
+    // Sends logged in users to home with the pet list
     if( isset($_SESSION['user' ]) || isset($_SESSION['admin' ]) || isset($_SESSION['superadmin' ]) ) {
         header("Location: home.php");
         exit;
     }
 
     $error = false;
-   
+
+    // This recieves the inputs in the login fields, checks and sanitizes them.
     if( isset($_POST['btn-login']) ) {
    
-        // prevent sql injections/ clear user invalid inputs
+        // Prevent SQL injections and clears the inputs from invalid text.
         $email = trim($_POST['email']);
         $email = strip_tags($email);
         $email = htmlspecialchars($email);
@@ -21,8 +22,8 @@
         $pass = trim($_POST[ 'pass']);
         $pass = strip_tags($pass);
         $pass = htmlspecialchars($pass);
-        // prevent sql injections / clear user invalid inputs
-    
+
+        // Validates inputs and displays error messages    
         if(empty($email)){
             $error = true;
             $emailError = '<div class="alert alert-danger my-1" role="alert">Please enter your email address.</div>';
@@ -36,13 +37,14 @@
             $passError = '<div class="alert alert-danger my-1" role="alert">Please enter your password.</div>';
         }
 
-        // if there's no error, continue to login
+        // Continue to login unless there is an error
         if (!$error) {
-            $password = hash( 'sha256', $pass); // password hashing
+            // Hashes the password
+            $password = hash( 'sha256', $pass);
             $res=mysqli_query($connect, "SELECT * FROM users WHERE userEmail='$email'" );
             $row=mysqli_fetch_array($res, MYSQLI_ASSOC);
-            $count = mysqli_num_rows($res); // if uname/pass is correct it returns must be 1 row
-
+            // If username and password are correct, this counts if there are multiple row entries
+            $count = mysqli_num_rows($res);
             if( $count == 1 && $row['userPass' ]==$password ) {
                 if($row['userType']=='admin'){
                     $_SESSION['admin'] = $row['userId'];
@@ -54,24 +56,19 @@
                     $_SESSION['user'] = $row['userId'];
                     header( "Location: index.php");
                 }
-
             } else {
                 $errMSG = '<div class="alert alert-danger my-1" role="alert">Incorrect Credentials, Try again...</div>';
             }
-    
         }
-   
     }
 ?>
 
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <title>Adopt A Pet</title>
@@ -80,6 +77,7 @@
 
     <?php include('navbar.php'); ?>
 
+    <!-- Adopt A Pet Intro video (embedded as responsive Youtube video) -->
     <div class="row">
         <div class="col-12 border">
             <div class="embed-responsive embed-responsive-16by9">
@@ -120,6 +118,8 @@
             </div>
             <div class="col-md-6 border bg-light p-5">
                 <h4 class="text-center">Login</h4>
+
+                <!-- Provides space for error messages -->
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete= "off">
                     <?php
                         if ( isset($errMSG) ) {
@@ -131,7 +131,7 @@
                             <label for="email">Email Address</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="email" name="email" class="form-control" placeholder="Your email address" value="<?php echo $email; ?>"  maxlength="40" />
+                            <input type="email" name="email" class="form-control" placeholder="Your email address" value="<?php echo $email; ?>" maxlength="40" />
                             <span class="text-danger"><?php  echo $emailError; ?></span>
                         </div>
                     </div>
@@ -165,6 +165,7 @@
             </div>
         </div>
         
+        <!-- Animaged HTML5 banner advertising Adopt A Pet --> 
         <div class="row">
             <div class="col-md-12 text-center">
                 <div id="header_hype_container" class="HYPE_document img-fluid rounded-lg" style="margin:auto;position:relative;width:100%;height:100%;overflow:hidden;">

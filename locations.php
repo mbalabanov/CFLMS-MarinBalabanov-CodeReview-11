@@ -3,13 +3,13 @@
     session_start();
     require_once 'actions/db_connect.php';
 
-    // if session is not set this will redirect to login page
+    // Prevents any users to access this action who are not admin or superadmin
     if( !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin']) ) {
         header("Location: index.php");
         exit;
     }
 
-    // select logged-in users details
+    // Selects details of users who are logged in
     if($_SESSION['admin']) {
         $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
         $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
@@ -23,11 +23,9 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <title>Adopt A Pet</title>
@@ -38,6 +36,8 @@
 
     <div class="container">
         <h2 class="mt-5 text-center">Welcome to Adopt A Pet</h2>
+        
+        <!-- The form to create a new location entry is in an accordion. -->
         <div class="row">
             <div class="col-12 text-center mb-2">
                 <div class="accordion" id="accordionExample">
@@ -60,6 +60,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- This renders the location data into a table.
+             Locations cannot be deleted, because they are used as a foreign key in the pets table.
+             This is not a terrible issue, because admins can change existing locations or assign pets to different locations. -->
         <div class="row my-3">
             <div class="col-md-12">
                 <table class="table border">

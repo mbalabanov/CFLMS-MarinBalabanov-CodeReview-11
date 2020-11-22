@@ -2,26 +2,29 @@
     ob_start();
     session_start();
 
-    // if session is not set this will redirect to login page
-    if( isset($_SESSION['user' ]) || isset($_SESSION['admin'])) {
-        header("Location: index.php");
+    // Sends logged in users to home with the pet list
+    if( isset($_SESSION['user' ]) || isset($_SESSION['admin']) || isset($_SESSION['superadmin'])) {
+        header("Location: home.php");
         exit;
     }
 
     include_once 'actions/db_connect.php';
+
     $error = false;
+
+    // This receives the inputs in the registration fields, checks and sanitizes them.
     if ( isset($_POST['btn-signup']) ) {
     
-    // sanitize user input to prevent sql injection
+    // Sanitize user's input to prevent SQL injection.
     $name = trim($_POST['name']);
 
-    //trim - strips whitespace (or other characters) from the beginning and end of a string
+    // Removes whitespace (or other characters) from the beginning and end of the user's name.
     $name = strip_tags($name);
 
-    // strip_tags — strips HTML and PHP tags from a string
+    // Removes any HTML and PHP tags from the input.
     $name = htmlspecialchars($name);
     
-    // htmlspecialchars converts special characters to HTML entities
+    // Converts any special characters to HTML entities to prevent code injection.
     $email = trim($_POST[ 'email']);
     $email = strip_tags($email);
     $email = htmlspecialchars($email);
@@ -32,7 +35,7 @@
     $pass = strip_tags($pass);
     $pass = htmlspecialchars($pass);
 
-    // basic name validation
+    // Basic validation of user's name.
     if (empty($name)) {
         $error = true ;
         $nameError = "Please enter your full name.";
@@ -44,12 +47,13 @@
         $nameError = "Name must contain alphabets and space.";
     }
 
-    //basic email validation
+    // Basic validation of email address.
     if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
         $error = true;
         $emailError = "Please enter valid email address." ;
     } else {
-        // checks whether the email exists or not
+
+        // Checks if email address is already in use.
         $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
         $result = mysqli_query($connect, $query);
         $count = mysqli_num_rows($result);
@@ -58,7 +62,8 @@
             $emailError = "Provided Email is already in use.";
         }
     }
-    // password validation
+
+    // Validates the password and outputs messages.
     if (empty($pass)){
         $error = true;
         $passError = "Please enter password.";
@@ -67,9 +72,10 @@
         $passError = "Password must have atleast 6 characters." ;
     }
 
-    // password hashing for security
+    // Hashes the password before saving it to database.
     $password = hash('sha256' , $pass);
-    // if there's no error, continue to signup
+
+    // Continue registration unless there is an error.
     if( !$error ) {
         $query = "INSERT INTO users(userName,userEmail,userPass,userImage) VALUES('$name','$email','$password','$userImage')";
         $res = mysqli_query($connect, $query);
@@ -92,11 +98,9 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <title>Register | Adopt A Pet</title>

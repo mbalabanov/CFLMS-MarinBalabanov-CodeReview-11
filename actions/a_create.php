@@ -2,20 +2,19 @@
     ob_start();
     session_start();
 
-    // if session is not set this will redirect to login page
+    // Prevents any users to access this action who are not admin or superadmin
     if( !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
     }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <title>Add Pet Entry | Adopt A Pet</title>
     
@@ -26,6 +25,7 @@
         <div class='row pt-2 alert alert-primary rounded-lg'>
             <div class='col-10 offset-1 text-center'>
 
+                <!-- Creates the pet entry and displays message to user -->
                 <?php 
                     require_once 'db_connect.php';
 

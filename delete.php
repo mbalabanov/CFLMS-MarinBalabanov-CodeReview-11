@@ -4,12 +4,22 @@
 
     require_once 'actions/db_connect.php';
 
-    // if session is not set this will redirect to login page
-    if( !isset($_SESSION['admin' ]) ) {
+    // Prevents any users to access this action who are not admin or superadmin
+    if( !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin']) ) {
         header("Location: index.php");
         exit;
     }
 
+    // Selects details of users who are logged in.
+    if($_SESSION['admin']) {
+        $res = mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
+        $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
+    } elseif($_SESSION['superadmin']) {
+        $res = mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
+        $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
+    }
+
+    // Gets the ID in the URL and pulls the relevant user data from the database.
     if ($_GET['id']) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM pets WHERE petId={$id}" ;
@@ -22,11 +32,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <title>Delete Entry | Adopt A Pet</title>
@@ -34,6 +42,7 @@
 </head>
 <body class="bg-light">
 
+<!-- Asks user to confirm delete and if confirmed passes the pet data to delete action. -->
 <div class="container my-4">
     <div class="row pt-2">
         <div class="col-12">

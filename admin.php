@@ -3,13 +3,13 @@
     session_start();
     require_once 'actions/db_connect.php';
 
-    // it will never let you open admin page if session is set
-    if( !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin' ]) ) {
+    // Prevents any users to access this action who are not superadmin
+    if( !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
     }
 
-    // select logged-in users details
+    // Selects details of users who are logged in
     $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 ?>
@@ -17,11 +17,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <title>Adopt A Pet</title>
@@ -30,6 +27,7 @@
 
     <?php include('navbar.php'); ?>
 
+    <!-- The form to add users is in an accordion. -->
     <div class="container my-5">
         <div class="row my-3">
             <div class="col-12 text-center">
@@ -61,6 +59,7 @@
         </div>
         <div class="row">
             <div class="col-12">
+                <!-- Provides space for the error messages -->
                 <?php
                     if ( isset($errMSG) ) {
                 ?>
@@ -88,12 +87,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    $sql = 'SELECT * FROM users';
-                    $result = $connect->query($sql);
 
-                    if($result->num_rows > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
+                    <?php
+                        $sql = 'SELECT * FROM users';
+                        $result = $connect->query($sql);
+
+                        if($result->num_rows > 0) {
+                            while($row = mysqli_fetch_assoc($result)) {
                             printf('
                                 <tr>
                                     <td>
@@ -117,8 +117,8 @@
                                 </tr>',
                                 $row['userImage'], $row['userName'], $row['userName'], $row['userEmail'], ucfirst($row['userType']), $row['userId'], $row['userId']);
                             }
-                        } else {
-                            echo('<tr><td colspan="6">No users in database</td></tr>');
+                            } else {
+                                echo('<tr><td colspan="6">No users in database</td></tr>');
                         }
                     ?>
                     </tbody>
@@ -132,6 +132,6 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 
-  </body>
+    </body>
 </html>
 <?php ob_end_flush(); ?>
