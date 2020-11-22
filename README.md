@@ -10,8 +10,6 @@ All animals show their name, an image, a description and a location. A location 
 
 The pet list page has a __live search__ allowing users to  filter/search through the pets (this feature uses AJAX).
 
-![Adopt A Pet Index Page](assets/screenshot-index.png)
-
 ## User Types
 By default, there are three kinds of users:
 - __User:__ Can access the list of pets and search/filter through it. This type of user _cannot_ create new pet entries, add new locations and create new users or change existing ones. 
@@ -22,3 +20,23 @@ The database export provided in this repository has three predefined users. Plea
 - For a __standard user__ please use username __test1@test.com__ and __tatata__ as the password.
 - For an __admin user__ please use __admin@admin.com__ and __tatata__ as password.
 - For __superadmin__ please use __superadmin@admin.com__ and __tatata__ as password.
+
+## Screenshots
+
+### Adopt A Pet Home Page
+<kbd>![Adopt A Pet Index Page](assets/screenshot-index.png)</kbd>
+
+### Regular User View of Pet List
+<kbd>![Adopt A Pet: Regular User View of Pet List](assets/screenshot-user.png)</kbd>
+
+### Admin and Superadmin View of Pet List
+<kbd>![Adopt A Pet: Admin and Superadmin View of Pet List](assets/screenshot-superadmin.png)</kbd>
+
+### Admin and Superadmin Create A New Pet Entry
+<kbd>![Adopt A Pet: Admin and Superadmin Create A New Pet Entry](assets/screenshot-petentry.png)</kbd>
+
+### Admin and Superadmin View of Locations and Create A New Location
+<kbd>![Adopt A Pet: Admin and Superadmin View of Locations and Create A New Location](assets/screenshot-locations.png)</kbd>
+
+### Superadmin View of User Administration
+<kbd>![Adopt A Pet: Superadmin View of User Administration](assets/screenshot-useradministration.png)</kbd>
