@@ -35,7 +35,7 @@
     <?php include('navbar.php'); ?>
 
     <div class="container">
-        <h2 class="mt-5 text-center">Welcome to Adopt A Pet</h2>
+        <h2 class="mt-5 text-center">List of Locations</h2>
         
         <!-- The form to create a new location entry is in an accordion. -->
         <div class="row">
