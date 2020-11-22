@@ -31,16 +31,22 @@ The database export provided in this repository has three predefined users. Plea
 
 ### Adopt A Pet Home Page
 On the home page users can watch a video and learn more about Adopt A Pet. They can login or register as well as see an animated HTML5 ad near the end of the page.
+
 <kbd>![Adopt A Pet Index Page](assets/screenshot-index.png)</kbd>
+
 
 ### Views of Pet List
 This is the main list of Adopt A Pet. __Left screenshot:__ Users can see all pets listed. They can filter by name using the live search. __Middle screenshot:__ Admins and Superadmin see a variation of the pet list page. They can not only filter by name using the live search but can also add new pet entries as well as change or delete existing ones. __Right screenshot:__ When an Admin or Superadmin clicks on "New Pet Entry" the accordion opens up to present them with the form to create a new pet entry.
+
 ![Adopt A Pet: User Views](assets/user-views1.png)
+
 
 ### Views of Location and User Administration
 __Left screenshot:__ Admins and Superadmins can see a list of all locations, edit existing ones or add new locations to the list. Locations cannot be deleted, because they are used as a foreign key in the pets table. This is not much of an issue, because admins can change existing locations or assign pets to different locations.
 __Right screenshot:__ And finally, only Superadmins can edit or delete existing users.
+
 ![Adopt A Pet: Admin and Superadmin View of Pet List](assets/user-views2.png)
+
 
 ## Concept
 
