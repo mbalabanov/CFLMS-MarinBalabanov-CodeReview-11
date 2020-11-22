@@ -24,19 +24,25 @@ The database export provided in this repository has three predefined users. Plea
 ## Screenshots
 
 ### Adopt A Pet Home Page
+On the home page users can watch a video and learn more about Adopt A Pet. They can login or register as well as see an animated HTML5 ad near the end of the page.
 <kbd>![Adopt A Pet Index Page](assets/screenshot-index.png)</kbd>
 
 ### Regular User View of Pet List
+This is the main list of Adopt A Pet. Users can see all pets listed. They can filter by name using the live search.
 <kbd>![Adopt A Pet: Regular User View of Pet List](assets/screenshot-user.png)</kbd>
 
 ### Admin and Superadmin View of Pet List
+Admins and Superadmin see a variation of the pet list page. They can not only filter by name using the live search but can also add new pet entries as well as change or delete existing ones.
 <kbd>![Adopt A Pet: Admin and Superadmin View of Pet List](assets/screenshot-superadmin.png)</kbd>
 
 ### Admin and Superadmin Create A New Pet Entry
+When an Admin or Superadmin clicks on "New Pet Entry" the accordion opens up to present them with the form to create a new pet entry.
 <kbd>![Adopt A Pet: Admin and Superadmin Create A New Pet Entry](assets/screenshot-petentry.png)</kbd>
 
 ### Admin and Superadmin View of Locations and Create A New Location
+Admins and Superadmins can see a list of all locations, edit existing ones or add new locations to the list. Locations cannot be deleted, because they are used as a foreign key in the pets table. This is not much of an issue, because admins can change existing locations or assign pets to different locations.
 <kbd>![Adopt A Pet: Admin and Superadmin View of Locations and Create A New Location](assets/screenshot-locations.png)</kbd>
 
 ### Superadmin View of User Administration
+And finally, only Superadmins can edit or delete existing users.
 <kbd>![Adopt A Pet: Superadmin View of User Administration](assets/screenshot-useradministration.png)</kbd>
