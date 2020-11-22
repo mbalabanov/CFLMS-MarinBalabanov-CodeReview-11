@@ -1,17 +1,24 @@
-# CFLMS CodeReview 11 MarinBalabanov
+# Adopt A Pet - CFLMS CodeReview 11 MarinBalabanov
 
-## Project description: “Adopt a Pet”
+## Project description
 
 __Please find a video of the project here: https://youtu.be/Ig9F8vZOXuY__
 
-You love animals and think it is time to adopt one. You like all sorts of animals: small animals, large animals, you may even like reptiles and birds and may be open to adopting animals of any age. 
+This is a pet database with a web frontend in Bootstrap, JQuery, PHP and MySQL. All pets have a photo and live at a specific location. They also a description, age and belong to a breed.
 
-All animals have a photo and live at a specific location. They also have a description, age and belong to a breed. Small animals may even have their own website. 
+All animals show their name, an image, a description and a location. A location should hold information about the city, ZIP-code, address. Senior animals (older than 8 years old) have their age emphasized.
 
-What all the animals have in common is a name, an image, a description and a location. A location should hold information about the city, ZIP-code, address (single line like “Praterstrasse 23”).
+The pet list page has a __live search__ allowing users to  filter/search through the pets (this feature uses AJAX).
 
-- Small animals have a location, an image, a name, a description, hobbies and age.
-- Large animals have a location, an image, a name, a description, hobbies and age.
-- Senior animals (older than 8 years old) have a location, an image, a name, a description, hobbies and age.
+![Adopt A Pet Index Page](assets/screenshot-index.png)
 
-For the regular points of this CodeReview, you need to create a structure using PHP and MySQL that will display the relevant data of the small, large and senior animals.
+## User Types
+By default, there are three kinds of users:
+- __User:__ Can access the list of pets and search/filter through it. This type of user _cannot_ create new pet entries, add new locations and create new users or change existing ones. 
+- __admin:__ Can access the list of pets and search/filter through it and can create new pet entries as well as add new locations or change existing ones. This type of user _cannot_ create new users or change existing users.
+- __superadmin:__ This type of user has unrestricted rights. They can access the list of pets and search/filter through it, can create new pet entries, add new locations or change existing ones and they can create new users or change existing users.
+
+The database export provided in this repository has three predefined users. Please find their login credentials below:
+- For a __standard user__ please use username __test1@test.com__ and __tatata__ as the password.
+- For an __admin user__ please use __admin@admin.com__ and __tatata__ as password.
+- For __superadmin__ please use __superadmin@admin.com__ and __tatata__ as password.
