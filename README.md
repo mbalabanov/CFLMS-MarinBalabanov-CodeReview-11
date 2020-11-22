@@ -2,7 +2,7 @@
 
 ## Project description
 
-__Please find a video of the project here: https://youtu.be/Ig9F8vZOXuY__
+__Please find a video of the project here: https://youtu.be/rf_reiVro4A
 
 This is a pet database with a web frontend in Bootstrap, JQuery, PHP and MySQL. All pets have a photo and live at a specific location. They also a description, age and belong to a breed.
 
