@@ -1,15 +1,23 @@
 <?php
     session_start();
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) || !isset($_SESSION['admin']) || !isset($_SESSION['superadmin']) ) {
         header( "Location: index.php");
-    } else if(isset($_SESSION[ 'user'])!="") {
-        header("Location: home.php");
     }
 
-    if  (isset($_GET['logout'])) {
+    // Destroys the user sessions on logout.
+    if (isset($_GET['logout'])) {
         unset($_SESSION['user' ]);
         session_unset();
         session_destroy();
+
+        unset($_SESSION['admin' ]);
+        session_unset();
+        session_destroy();
+
+        unset($_SESSION['superadmin' ]);
+        session_unset();
+        session_destroy();
+
         header("Location: index.php");
         exit;
     }

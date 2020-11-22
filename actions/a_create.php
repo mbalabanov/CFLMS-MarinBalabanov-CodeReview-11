@@ -2,22 +2,21 @@
     ob_start();
     session_start();
 
-    // if session is not set this will redirect to login page
-    if( !isset($_SESSION['user' ]) ) {
+    // Prevents any users to access this action who are not admin or superadmin
+    if( !isset($_SESSION['admin' ]) && !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
     }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <title>Add media | Adopt A Pet</title>
+    <title>Add Pet Entry | Adopt A Pet</title>
     
 </head>
 <body class="bg-light">
@@ -26,27 +25,24 @@
         <div class='row pt-2 alert alert-primary rounded-lg'>
             <div class='col-10 offset-1 text-center'>
 
+                <!-- Creates the pet entry and displays message to user -->
                 <?php 
                     require_once 'db_connect.php';
 
                     if ($_POST) {
-                    $title = $_POST['formtitle'];
+                    $name = $_POST['formname'];
                     $image = $_POST['formimage'];
-                    $author_first_name = $_POST[ 'formauthor_first_name'];
-                    $author_last_name = $_POST[ 'formauthor_last_name'];
-                    $isbn_code = $_POST[ 'formisbn_code'];
-                    $short_description = $_POST[ 'formshort_description'];
-                    $publish_date = intval($_POST[ 'formpublish_date']);
-                    $publisher_name = $_POST[ 'formpublisher'];
-                    $publisher_address = $_POST[ 'formpublisher'];
-                    $publisher_size = $_POST[ 'formpublisher'];
-                    $media_type = $_POST[ 'formmedia_type'];
+                    $type = $_POST[ 'formtype'];
+                    $descriptions = $_POST[ 'formdescription'];
+                    $hobbies = $_POST[ 'formhobbies'];
+                    $age = intval($_POST[ 'formage']);
+                    $location = intval($_POST[ 'formlocation']);
 
-                    $sql = "INSERT INTO media (title, image, author_first_name, author_last_name, isbn_code, short_description, publish_date, publisher_name, publisher_address, publisher_size, media_type) VALUES ('$title', '$image', '$author_first_name', '$author_last_name', '$isbn_code', '$short_description', '$publish_date', '$publisher_name', '$publisher_address', '$publisher_size', '$media_type')";
+                    $sql = "INSERT INTO pets (name, image, type, descriptions, hobbies, age, location) VALUES ('$name', '$image', '$type', '$descriptions', '$hobbies', '$age', '$location')";
                         if($connect->query($sql) === TRUE) {
                         echo "
-                            <h3>New media '$title' successfully added to database</h3>
-                            <a class='btn btn-secondary m-2' href='../index.php'>Back to library</a>
+                            <h3>New pet '$name' successfully added to database</h3>
+                            <a class='btn btn-secondary m-2' href='../index.php'>Back to pet list</a>
                             ";
                     } else  {
                         echo "
