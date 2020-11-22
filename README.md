@@ -13,6 +13,9 @@ The pet list page has a __live search__ allowing users to  filter/search through
 ## Sitemap
 ![Adopt A Pet: sitemap](concept/03_sitemap-adopt_a_pet.png)
 
+## Database Diagram
+![Adopt A Pet: Data Diagram](concept/02_datamodel-adoptapet.png)
+
 ## User Types
 By default, there are three kinds of users:
 - __User:__ Can access the list of pets and search/filter through it. This type of user _cannot_ create new pet entries, add new locations and create new users or change existing ones. 
@@ -52,12 +55,9 @@ And finally, only Superadmins can edit or delete existing users.
 
 ## Concept
 
-### 1. Initial Sitemap Sketch
+### Initial Sitemap Sketch
 ![Adopt A Pet: Sitemap Sketch](concept/00_sitemap-sketch-adopt_a_pet.png)
 
-### 2. Initial Data Sketch
+### Initial Data Sketch
 ![Adopt A Pet: Data Sketch](concept/01_data-sketch-adopt_a_pet.png)
-
-### 3. Database Diagram
-![Adopt A Pet: Data Diagram](concept/02_datamodel-adoptapet.png)
 
