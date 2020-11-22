@@ -10,6 +10,12 @@ All animals show their name, an image, a description and a location. A location 
 
 The pet list page has a __live search__ allowing users to  filter/search through the pets (this feature uses AJAX).
 
+## Sitemap
+![Adopt A Pet: sitemap](concept/03_sitemap-adopt_a_pet.png)
+
+## Database Diagram
+![Adopt A Pet: Data Diagram](concept/02_datamodel-adoptapet.png)
+
 ## User Types
 By default, there are three kinds of users:
 - __User:__ Can access the list of pets and search/filter through it. This type of user _cannot_ create new pet entries, add new locations and create new users or change existing ones. 
@@ -46,3 +52,12 @@ Admins and Superadmins can see a list of all locations, edit existing ones or ad
 ### Superadmin View of User Administration
 And finally, only Superadmins can edit or delete existing users.
 <kbd>![Adopt A Pet: Superadmin View of User Administration](assets/screenshot-useradministration.png)</kbd>
+
+## Concept
+
+### Initial Sitemap Sketch
+![Adopt A Pet: Sitemap Sketch](concept/00_sitemap-sketch-adopt_a_pet.png)
+
+### Initial Data Sketch
+![Adopt A Pet: Data Sketch](concept/01_data-sketch-adopt_a_pet.png)
+
