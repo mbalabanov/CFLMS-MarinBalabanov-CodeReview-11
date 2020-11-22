@@ -44,9 +44,6 @@ __Right screenshot:__ And finally, only Superadmins can edit or delete existing 
 
 ## Concept
 
-### Initial Sitemap Sketch
-![Adopt A Pet: Sitemap Sketch](concept/00_sitemap-sketch-adopt_a_pet.png)
-
-### Initial Data Sketch
-![Adopt A Pet: Data Sketch](concept/01_data-sketch-adopt_a_pet.png)
+### Initial Data and Sitemap Sketches
+![Adopt A Pet: Data Sketch](assets/concept-sketches.png)
 
