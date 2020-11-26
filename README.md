@@ -1,4 +1,5 @@
-# Adopt A Pet - CFLMS CodeReview 11 MarinBalabanov
+# Adopt A Pet - CFLMS CodeReview 11
+By Marin Balabanov
 
 ## Project description
 
