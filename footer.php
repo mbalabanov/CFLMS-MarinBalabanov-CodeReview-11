@@ -1,4 +1,4 @@
-<div class="container-fluid text-center">
+<div class="container-fluid text-center bg-white border-top">
     <img src="assets/pet-row.jpg" alt="Adopt A Pet" loading="lazy" class="img-fluid">
 </div>
 <footer class="py-5 bg-secondary text-white">

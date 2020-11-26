@@ -4,7 +4,7 @@
 
     require_once 'actions/db_connect.php';
 
-    // if session is not set this will redirect to login page
+    // Prevents any users to access this action who are not superadmin
     if( !isset($_SESSION['superadmin' ]) ) {
         header("Location: index.php");
         exit;
@@ -12,7 +12,7 @@
 
     // Selects details of users who are logged in.
     // Since only Superadmin users can access this page, only their data is queried
-    $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
+    $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 
     // Gets the ID in the URL and pulls the relevant user data from the database. 
@@ -54,8 +54,6 @@
         </div>
     </div>
 </div >
-
-<?php include('footer.php'); ?>
 
 <script src="js/jquery-3.5.1.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>

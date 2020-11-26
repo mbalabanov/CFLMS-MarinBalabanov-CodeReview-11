@@ -73,7 +73,7 @@
 
         <title>Adopt A Pet</title>
     </head>
-    <body class="bg-white">
+    <body class="bg-light">
 
     <?php include('navbar.php'); ?>
 

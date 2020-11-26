@@ -12,6 +12,92 @@
     // Selects details of users who are logged in
     $res=mysqli_query($connect, "SELECT * FROM users WHERE userId=".$_SESSION['superadmin']);
     $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+
+    $error = false;
+
+    // This receives the inputs in the registration fields, checks and sanitizes them.
+    if ( isset($_POST['btn-signup']) ) {
+    
+    // Sanitize user's input to prevent SQL injection.
+    $name = trim($_POST['name']);
+
+    // Removes whitespace (or other characters) from the beginning and end of the user's name.
+    $name = strip_tags($name);
+
+    // Removes any HTML and PHP tags from the input.
+    $name = htmlspecialchars($name);
+    
+    // Converts any special characters to HTML entities to prevent code injection.
+    $email = trim($_POST[ 'email']);
+    $email = strip_tags($email);
+    $email = htmlspecialchars($email);
+
+    $userImage = trim($_POST[ 'userimage']);
+
+    $pass = trim($_POST['pass']);
+    $pass = strip_tags($pass);
+    $pass = htmlspecialchars($pass);
+
+    // Basic validation of user's name.
+    if (empty($name)) {
+        $error = true ;
+        $nameError = "Please enter your full name.";
+    } else if (strlen($name) < 3) {
+        $error = true;
+        $nameError = "Name must have at least 3 characters.";
+    } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+        $error = true ;
+        $nameError = "Name must contain alphabets and space.";
+    }
+
+    // Basic validation of email address.
+    if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
+        $error = true;
+        $emailError = "Please enter valid email address." ;
+    } else {
+
+        // Checks if email address is already in use.
+        $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
+        $result = mysqli_query($connect, $query);
+        $count = mysqli_num_rows($result);
+        if($count!=0){
+            $error = true;
+            $emailError = "Provided Email is already in use.";
+        }
+    }
+
+    // Validates the password and outputs messages.
+    if (empty($pass)){
+        $error = true;
+        $passError = "Please enter password.";
+    } else if(strlen($pass) < 6) {
+        $error = true;
+        $passError = "Password must have atleast 6 characters." ;
+    }
+
+    // Hashes the password before saving it to database.
+    $password = hash('sha256' , $pass);
+
+    // Continue registration unless there is an error.
+    if( !$error ) {
+        $query = "INSERT INTO users(userName,userEmail,userPass,userImage) VALUES('$name','$email','$password','$userImage')";
+        $res = mysqli_query($connect, $query);
+
+        if ($res) {
+            $errTyp = "warning";
+            $errMSG = "Successfully registered, please login.";
+            unset($name);
+            unset($email);
+            unset($pass);
+        } else  {
+            $errTyp = "danger";
+            $errMSG = "Something went wrong, try again later..." ;
+        }
+    }
+
+}
+
 ?>
 
 <!doctype html>
@@ -50,6 +136,19 @@
                             <div class="card-body">
                                 <div class="m-4 alert alert-primary">
                                     <?php include('forms/registrationform.php'); ?>
+
+                                    <?php
+                                        if ( isset($errMSG) ) {
+                                    ?>
+
+                                    <div class="alert alert-<?php echo $errTyp ?>" >
+                                        <?php echo $errMSG; ?>
+                                    </div>
+
+                                    <?php
+                                        }
+                                    ?>
+
                                 </div>
                             </div>
                         </div>
