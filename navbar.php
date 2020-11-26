@@ -17,7 +17,12 @@
             ?>
             <?php
                 if( isset($_SESSION['admin']) || isset($_SESSION['superadmin']) ) {
-                    echo('<li class="nav-item"><a class="nav-link" href="locations.php">Locations</a></li><li class="nav-item"><a class="nav-link" href="admin.php">User Administration</a></li>');
+                    echo('<li class="nav-item"><a class="nav-link" href="locations.php">Locations</a></li>');
+                }
+            ?>
+            <?php
+                if( isset($_SESSION['superadmin']) ) {
+                    echo('<li class="nav-item"><a class="nav-link" href="admin.php">User Administration</a></li>');
                 }
             ?>
         </ul>
